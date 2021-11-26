@@ -1,4 +1,5 @@
 #include <iostream>
+#include<fstream>
 #include <string>
 #include <conio.h>
 #include <stdlib.h>
@@ -8,11 +9,31 @@ using namespace std;
 void view()
 {
 	//to view items alailable 
+	char a[100];
+	cout<<"elements present : \n";
+	ifstream obj("main.dat");
+	obj.getline(a,100);
+	cout<<a<<endl;
+	obj.close();
+	cout<<"display ended \n";
+	
 }
 
 void add()
 {
 	//add new items
+	string a;
+	cout<<"enter the data :\n";
+	fflush(stdin);
+	getline(cin,a);
+	ofstream myfile("main.dat",ios::app);
+	//myfile.open("main.dat");
+	myfile<<a;
+	myfile<<"\n";
+	myfile.close();
+	cout<<"data added\n";
+	
+	
 }
 
 void delete_item()
