@@ -4,15 +4,17 @@
 #include <conio.h>
 #include <stdlib.h>
 
+#define s 100
+
 using namespace std;
 
 void view()
 {
 	//to view items alailable 
-	char a[100];
+	char a[s];
 	cout<<"elements present : \n";
 	ifstream obj("main.dat");
-	obj.read(a,100);
+	obj.read(a,s);
 	cout<<a<<endl;
 	obj.close();
 	cout<<"display ended \n";
