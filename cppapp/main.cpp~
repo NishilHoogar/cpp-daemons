@@ -16,7 +16,7 @@ void view()
 	char exp[s];
 	char qua[s],pri[s],srno[s];
 	cout<<"elements present : \n";
-	
+	cout<<"SRno.\tProduct \t\t      Quantity\tPrice\tExpiry \t\n";
 	ifstream obj0("srno.txt");
 	ifstream obj("main.txt");
 	ifstream obj1("quantity.txt");
