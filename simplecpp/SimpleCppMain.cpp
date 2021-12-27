@@ -3,22 +3,20 @@
 #include<iostream>
 #include<Windows.h>
 #include<ctime>
-
-// declaration of all functions
 void result();
 void result2();
 void result3();
-void maze();    // maze func
-int HTP1();      // instructions
+void maze();
+int HTP1();
 int HTP2();
-void load1();    // load screen
+void load1();
 void load2();
-int start_screen();     // start screen
+int start_screen();
 int end_screen();
-int scorecard();    // scorecard
-int menu1();     // main menu
+int scorecard();
+int menu1();
 int menu2();
-int archery();  // archery func
+int archery();
 
 static int score=0;
 static int flag[10]={0,0,0,0,0,0,0,0,0,0};
@@ -46,7 +44,7 @@ void load1()
         wait(0.1);
         i=i+1;
     }while(i<25);
-    wait(2);
+    //wait(2);
 }
 
 void load2()
@@ -83,6 +81,13 @@ int start_screen()
     Rectangle R(aFx,aFy,textW,textH);
     R.setColor(COLOR(0,0,60));
     R.setFill(COLOR(0,0,60));
+
+    Rectangle a(bFx,200,150,150);
+    a.setColor(COLOR(255,255,255));
+    a.setFill(COLOR(255,255,255));
+    Text v(bFx,200,"CPP Deamons");
+    Rectangle a1(bFx,200,textWidth(" CPP Deamons "),textHeight());
+
     Rectangle R5(bFx,bFy,100,50);
     R5.setColor(COLOR(255,255,255));
     R5.setFill(COLOR(255,255,255));
@@ -117,17 +122,16 @@ int start_screen()
         int clickPos = getClick();
         int cx = clickPos/65536;
         int cy = clickPos % 65536;
-        if(bLx-bWidth/2<= cx && cx<= bLx+bWidth/2 && bLy-bHeight/2 <= cy && cy <= bLy+bHeight/2)//TO SELECT HOW TO PLAY
+        if(bLx-bWidth/2<= cx && cx<= bLx+bWidth/2 && bLy-bHeight/2 <= cy && cy <= bLy+bHeight/2)
         {
             HTP2();
         }
-        if(bFx-bWidth/2<= cx && cx<= bFx+bWidth/2 && bFy-bHeight/2 <= cy && cy <= bFy+bHeight/2)//TO START GAME
+        if(bFx-bWidth/2<= cx && cx<= bFx+bWidth/2 && bFy-bHeight/2 <= cy && cy <= bFy+bHeight/2)
         {
-
             maze();
             return 0;
         }
-        if(bEx-bWidth/2<= cx && cx<= bEx+bWidth/2 && bEy-bHeight/2 <= cy && cy <= bEy+bHeight/2)//TO EXIT FROM THE GAME
+        if(bEx-bWidth/2<= cx && cx<= bEx+bWidth/2 && bEy-bHeight/2 <= cy && cy <= bEy+bHeight/2)
         {
             exit(0);
         }
@@ -152,10 +156,10 @@ int HTP1()
     Text t3(aFx,aFy,"Kill all zombies to win!");
     Text t4(aFx,200,"Use 'w' to move UP");
     Text t5(aFx,250,"Use 's' to move DOWN");
-    Text t6(aFx,400,"Use 'd' to SHOOT");
-    Text t7(aFx,450,"Shoot the zombies and avoid killing the escaping humans");
-    Text t8(aFx,500,"Every zombie shot dead earns you 20 points");
-    Text t9(aFx,600,"Killing innocent bystanders results in decrement of 10 points");
+    Text t6(aFx,300,"Use 'd' to SHOOT");
+    Text t7(aFx,350,"Shoot the zombies and avoid killing the escaping humans");
+    Text t8(aFx,400,"Every zombie shot dead earns you 20 points");
+    Text t9(aFx,500,"Killing innocent bystanders results in decrement of 10 points");
     Text t10(aFx,700,"Hit key p to exit midgame");
     Text tx(bLx,bLy,"BACK");
     Rectangle b(bLx,bLy,textWidth(" BACK "),textHeight());
@@ -254,7 +258,7 @@ void result3()
     wait(5);
 }
 
-int menu1()// maze - archery
+int menu1()
 {
     int i=1;
     Rectangle r(650,400,450,200);
@@ -292,6 +296,7 @@ int menu1()// maze - archery
             break;
             case '3':
             i=0;
+            end_screen();
             break;
         }
     }
@@ -365,7 +370,6 @@ br16.setColor(GREEN);
 br17.setColor(GREEN);
 br18.setColor(GREEN);
 br19.setColor(GREEN);
-//b20.setColor(GREEN);
 br21.setColor(GREEN);
 br22.setColor(GREEN);
 br23.setColor(GREEN);
@@ -441,7 +445,11 @@ while(1)
     n=a[i][j];
     time2=time(NULL);
     if(time2-time1>=60)
-    { result(); break; }
+    {
+        result();
+        end_screen();
+        //break;
+    }
     else if(n==0||p==13&&n==1||p==14&&n==2||p==15&&n==3||p==27&&n==15||p==28&&n==16||p==100&&n==88||p==101&&n==89||p==97&&n==85||p==122&&n==110||
     p==21&&n==9||p==58&&n==46||p==50&&n==38||p==85&&n==73||p==123&&n==111||p==124&&n==112||p==125&&n==113||p==126&&n==114||p==136&&n==124||p==137&&n==125||p==138&&n==126||p==139&&n==127||p==140&&n==128
     ||p==43&&n==31||p==92&&n==80||p==72&&n==60||p==83&&n==71||p==118&&n==106||p==142&&n==130||p==131&&n==119)
@@ -451,7 +459,8 @@ while(1)
         cle.setColor(RED);
         cle.setFill(RED);
         result2();
-        break;
+        end_screen();
+        //break;
     }
     else
     cle.move(0,-50);
@@ -463,7 +472,11 @@ while(1)
     n=a[i][j];
     time2=time(NULL);
     if(time2-time1>=60)
-    { result(); break; }
+    {
+    result();
+    end_screen();
+    //break;
+    }
 
     else if(n==0||n==13&&p==1||n==14&&p==2||n==15&&p==3||n==27&&p==15||n==28&&p==16||n==100&&p==88||n==101&&p==89||n==97&&p==85||n==122&&p==110||
     n==21&&p==9||n==58&&p==46||n==50&&p==38||n==85&&p==73||n==123&&p==111||n==124&&p==112||n==125&&p==113||n==126&&p==114||n==136&&p==124||n==137&&p==125||n==138&&p==126||n==139&&p==127||n==140&&p==128
@@ -474,7 +487,8 @@ while(1)
         cle.setColor(RED);
         cle.setFill(RED);
         result2();
-        break;
+        end_screen();
+        //break;
     }
     else
     cle.move(0,50);
@@ -486,7 +500,11 @@ while(1)
         n=a[i][j];
         time2=time(NULL);
         if(time2-time1>=60)
-        { result(); break; }
+        {
+        result();
+        end_screen();
+        //break;
+        }
 
         else if(n==0||n==26&&p==27||n==38&&p==39||n==50&&p==51||n==62&&p==63||n==28&&p==29||n==40&&p==10||n==52&&p==53||n==64&&p==65||n==5&&p==6||
         n==40&&p==41||n==17&&p==18||n==29&&p==30||n==41&&p==42||n==53&&p==54||n==65&&p==66||n==77&&p==78||n==89&&p==90||n==97&&p==98||n==109&&p==110||n==121&&p==122||n==8&&p==9||n==20&&p==21||
@@ -499,7 +517,8 @@ while(1)
         cle.setColor(RED);
         cle.setFill(RED);
         result2();
-        break;
+        end_screen();
+        //break;
     }
         else
         cle.move(-50,0);
@@ -511,7 +530,11 @@ while(1)
         n=a[i][j];
         time2=time(NULL);
         if(time2-time1>=60)
-        { result(); break; }
+        {
+        result();
+        end_screen();
+        //break;
+        }
         else if(n==1230)
         {
             wait(1);
@@ -530,7 +553,8 @@ while(1)
         cle.setColor(RED);
         cle.setFill(RED);
         result2();
-        break;
+        end_screen();
+        //break;
     }
         else
         cle.move(50,0);
@@ -740,23 +764,21 @@ int end_screen()
     Rectangle R(aFx,aFy,textW,textH);
     R.setColor(COLOR(0,0,60));
     R.setFill(COLOR(0,0,60));
-    Rectangle R5(bFx,bFy,100,50);
+
+    Rectangle R5(bFx,bFy,150,150);
     R5.setColor(COLOR(255,255,255));
     R5.setFill(COLOR(255,255,255));
-    Text t1(bFx,bFy,"Start Game");
-    Rectangle R1(bFx,bFy,textWidth(" Start Game "),textHeight());
+    Text t1(bFx,bFy,"Play Again");
+    Rectangle R1(bFx,bFy,textWidth(" Play Agian "),textHeight());
     wait(0.5);
-    Rectangle R6(bLx,bLy,100,50);
-    R6.setColor(COLOR(255,255,255));
-    R6.setFill(COLOR(255,255,255));
-    Text t2(bLx,bLy,"How to Play");
-    Rectangle R2(bLx,bLy,textWidth(" How to Play "),textHeight());
-    wait(0.5);
-    Rectangle R0(bEx,bEy,100,50);
+
+    Rectangle R0(bEx,bEy,150,150);
     R0.setColor(COLOR(255,255,255));
     R0.setFill(COLOR(255,255,255));
     Text t3(bEx,bEy,"Exit Game");
     Rectangle R3(bEx,bEy,textWidth(" Exit Game "),textHeight());
+
+
 
 
     while(i==1)
@@ -764,17 +786,13 @@ int end_screen()
         int clickPos = getClick();
         int cx = clickPos/65536;
         int cy = clickPos % 65536;
-        if(bLx-bWidth/2<= cx && cx<= bLx+bWidth/2 && bLy-bHeight/2 <= cy && cy <= bLy+bHeight/2)//TO SELECT HOW TO PLAY
-        {
-            HTP2();
-        }
-        if(bFx-bWidth/2<= cx && cx<= bFx+bWidth/2 && bFy-bHeight/2 <= cy && cy <= bFy+bHeight/2)//TO START GAME
+        if(bFx-bWidth/2<= cx && cx<= bFx+bWidth/2 && bFy-bHeight/2 <= cy && cy <= bFy+bHeight/2)
         {
 
-            maze();
+            start_screen();
             return 0;
         }
-        if(bEx-bWidth/2<= cx && cx<= bEx+bWidth/2 && bEy-bHeight/2 <= cy && cy <= bEy+bHeight/2)//TO EXIT FROM THE GAME
+        if(bEx-bWidth/2<= cx && cx<= bEx+bWidth/2 && bEy-bHeight/2 <= cy && cy <= bEy+bHeight/2)
         {
             exit(0);
         }
@@ -822,19 +840,19 @@ int menu2()
     return(0);
 }
 
-class Body:public Composite //Creating body and feet of the man,class Body is a child class of Composite class
+class Body:public Composite
 {
     Line *bd[7];
-    //Circle *cir[2];
+
 public:
     Body(double x,double y,Color c,Composite* owner=NULL):Composite(x,y,owner)
     {
-        bd[0]=new Line (58,82,58,150,this); //body
-        bd[1]=new Line (58,150,38,142,this);//leg
-        bd[2]=new Line (58,125,82,125,this);//
-        bd[3]=new Line (58,99,35,105,this);//arm1 part2
-        bd[4]=new Line (35,105,58,85,this);//arm1 part1
-        bd[5]=new Line (58,85,102,99,this);//hand nearest to arrow
+        bd[0]=new Line (58,82,58,150,this);
+        bd[1]=new Line (58,150,38,142,this);
+        bd[2]=new Line (58,125,82,125,this);
+        bd[3]=new Line (58,99,35,105,this);
+        bd[4]=new Line (35,105,58,85,this);
+        bd[5]=new Line (58,85,102,99,this);
         bd[6]=new Line (82,125,82,150,this);
         bd[0]->setColor(COLOR(144,238,144));
         bd[0]->setFill(c);
@@ -853,16 +871,16 @@ public:
     }
 };
 
-class Bow:public Composite //Creating bow held by the man,class Bow is a child class of Composite
+class Bow:public Composite
 {
     Line *bw[4];
     public:
     Bow(double x,double y,Color c,Composite* owner=NULL):Composite(x,y,owner)
     {
         bw[0]=new Line (60,97,89,77,this);
-        bw[1]=new Line (89,77,102,99,this);//upper-front part of arrow.
+        bw[1]=new Line (89,77,102,99,this);
         bw[2]=new Line (102,99,89,119,this);
-        bw[3]=new Line (89,117,60,97,this);//back-lower part of arrow.
+        bw[3]=new Line (89,117,60,97,this);
         bw[0]->setColor(COLOR(255,255,255));
         bw[1]->setColor(COLOR(193, 154, 107));
         bw[2]->setColor(COLOR(193, 154, 107));
@@ -931,16 +949,16 @@ class Balloon:public Composite
              balloon1->setColor(COLOR(144,238,144));
              balloon1->setFill(COLOR(144,238,144));
 
-             line11=new Line (600,125,600,183,this);//body
+             line11=new Line (600,125,600,183,this);
              line11->setColor(COLOR(144,238,144));
              line11->setFill(COLOR(144,238,144));
-             line12=new Line (600,150,580,175,this);//leg
+             line12=new Line (600,150,580,175,this);
              line12->setColor(COLOR(144,238,144));
              line12->setFill(COLOR(144,238,144));
-             line13=new Line (600,128,565,128,this);//hand
+             line13=new Line (600,128,565,128,this);
              line13->setColor(COLOR(144,238,144));
              line13->setColor(COLOR(144,238,144));
-             line14=new Line (565,128,562,130,this);//palm
+             line14=new Line (565,128,562,130,this);
              line14->setColor(COLOR(144,238,144));
              line14->setColor(COLOR(144,238,144));
 
@@ -948,25 +966,25 @@ class Balloon:public Composite
              balloon2->setColor(COLOR(255,255,255));
              balloon2->setFill(COLOR(255,255,255));
 
-             line21=new Line (610,280,648,340,this);//1st Human Hostage
+             line21=new Line (610,280,648,340,this);
              line21->setColor(COLOR(144,238,144));
              line21->setFill(COLOR(144,238,144));
-             line22=new Line (648,341,670,338,this);//leg1
+             line22=new Line (648,341,670,338,this);
              line22->setColor(COLOR(144,238,144));
              line22->setFill(COLOR(144,238,144));
-             line23=new Line (632,320,610,349,this);//leg2
+             line23=new Line (632,320,610,349,this);
              line23->setColor(COLOR(144,238,144));
              line23->setColor(COLOR(144,238,144));
-             line24=new Line (614,290,590,308,this);//Arm 1
+             line24=new Line (614,290,590,308,this);
              line24->setColor(COLOR(144,238,144));
              line24->setColor(COLOR(144,238,144));
-             line25=new Line (590,308,580,280,this);//
+             line25=new Line (590,308,580,280,this);
              line25->setColor(COLOR(144,238,144));
              line25->setColor(COLOR(144,238,144));
-             line26=new Line (614,290,640,270,this);//Arm 2
+             line26=new Line (614,290,640,270,this);
              line26->setColor(COLOR(144,238,144));
              line26->setColor(COLOR(144,238,144));
-             line27=new Line (640,270,660,308,this);//
+             line27=new Line (640,270,660,308,this);
              line27->setColor(COLOR(144,238,144));
              line27->setColor(COLOR(144,238,144));
 
@@ -975,16 +993,16 @@ class Balloon:public Composite
              balloon3->setColor(COLOR(144,238,144));
              balloon3->setFill(COLOR(144,238,144));
 
-             line31=new Line (250,445,250,503,this);//2nd zombie body
+             line31=new Line (250,445,250,503,this);
              line31->setColor(COLOR(144,238,144));
              line31->setFill(COLOR(144,238,144));
-             line32=new Line (250,470,230,495,this);//leg
+             line32=new Line (250,470,230,495,this);
              line32->setColor(COLOR(144,238,144));
              line32->setFill(COLOR(144,238,144));
-             line33=new Line (250,448,215,448,this);//hand
+             line33=new Line (250,448,215,448,this);
              line33->setColor(COLOR(144,238,144));
              line33->setColor(COLOR(144,238,144));
-             line34=new Line (215,448,212,450,this);//palm
+             line34=new Line (215,448,212,450,this);
              line34->setColor(COLOR(144,238,144));
              line34->setColor(COLOR(144,238,144));
 
@@ -992,16 +1010,16 @@ class Balloon:public Composite
              balloon4->setColor(COLOR(144,238,144));
              balloon4->setFill(COLOR(144,238,144));
 
-             line41=new Line (900,577,900,635,this);//3rd zombie body
+             line41=new Line (900,577,900,635,this);
              line41->setColor(COLOR(144,238,144));
              line41->setFill(COLOR(144,238,144));
-             line42=new Line (900,602,880,627,this);//leg
+             line42=new Line (900,602,880,627,this);
              line42->setColor(COLOR(144,238,144));
              line42->setFill(COLOR(144,238,144));
-             line43=new Line (900,580,865,580,this);//hand
+             line43=new Line (900,580,865,580,this);
              line43->setColor(COLOR(144,238,144));
              line43->setColor(COLOR(144,238,144));
-             line44=new Line (865,580,862,582,this);//palm
+             line44=new Line (865,580,862,582,this);
              line44->setColor(COLOR(144,238,144));
              line44->setColor(COLOR(144,238,144));
 
@@ -1009,42 +1027,42 @@ class Balloon:public Composite
              balloon5->setColor(COLOR(144,238,144));
              balloon5->setFill(COLOR(144,238,144));
 
-             line51=new Line (340,365,340,423,this);//4th zombie body
+             line51=new Line (340,365,340,423,this);
              line51->setColor(COLOR(144,238,144));
              line51->setFill(COLOR(144,238,144));
-             line52=new Line (340,390,320,415,this);//leg
+             line52=new Line (340,390,320,415,this);
              line52->setColor(COLOR(144,238,144));
              line52->setFill(COLOR(144,238,144));
-             line53=new Line (340,368,305,368,this);//hand
+             line53=new Line (340,368,305,368,this);
              line53->setColor(COLOR(144,238,144));
              line53->setColor(COLOR(144,238,144));
-             line54=new Line (305,368,302,370,this);//palm
+             line54=new Line (305,368,302,370,this);
              line54->setColor(COLOR(144,238,144));
              line54->setColor(COLOR(144,238,144));
 
-             balloon6=new Circle (720,503,r,this);//2nd Human Hostage
+             balloon6=new Circle (720,503,r,this);
              balloon6->setColor(COLOR(255,255,255));
              balloon6->setFill(COLOR(255,255,255));
 
-             line61=new Line (730,520,768,580,this);//2nd Human Hostage body
+             line61=new Line (730,520,768,580,this);
              line61->setColor(COLOR(144,238,144));
              line61->setFill(COLOR(144,238,144));
-             line62=new Line (768,580,790,578,this);//leg1
+             line62=new Line (768,580,790,578,this);
              line62->setColor(COLOR(144,238,144));
              line62->setFill(COLOR(144,238,144));
-             line63=new Line (752,560,730,589,this);//leg2
+             line63=new Line (752,560,730,589,this);
              line63->setColor(COLOR(144,238,144));
              line63->setColor(COLOR(144,238,144));
-             line64=new Line (734,530,710,549,this);//Arm 1
+             line64=new Line (734,530,710,549,this);
              line64->setColor(COLOR(144,238,144));
              line64->setColor(COLOR(144,238,144));
-             line65=new Line (710,548,700,520,this);//
+             line65=new Line (710,548,700,520,this);
              line65->setColor(COLOR(144,238,144));
              line65->setColor(COLOR(144,238,144));
-             line66=new Line (734,530,760,510,this);//Arm 2
+             line66=new Line (734,530,760,510,this);
              line66->setColor(COLOR(144,238,144));
              line66->setColor(COLOR(144,238,144));
-             line67=new Line (760,510,780,549,this);//
+             line67=new Line (760,510,780,549,this);
              line67->setColor(COLOR(144,238,144));
              line67->setColor(COLOR(144,238,144));
 
@@ -1052,42 +1070,42 @@ class Balloon:public Composite
              balloon7->setColor(COLOR(144,238,144));
              balloon7->setFill(COLOR(144,238,144));
 
-             line71=new Line (400,205,400,263,this);//5th zombie body
+             line71=new Line (400,205,400,263,this);
              line71->setColor(COLOR(144,238,144));
              line71->setFill(COLOR(144,238,144));
-             line72=new Line (400,230,380,255,this);//leg
+             line72=new Line (400,230,380,255,this);
              line72->setColor(COLOR(144,238,144));
              line72->setFill(COLOR(144,238,144));
-             line73=new Line (400,208,365,208,this);//hand
+             line73=new Line (400,208,365,208,this);
              line73->setColor(COLOR(144,238,144));
              line73->setColor(COLOR(144,238,144));
-             line74=new Line (365,208,362,210,this);//palm
+             line74=new Line (365,208,362,210,this);
              line74->setColor(COLOR(144,238,144));
              line74->setColor(COLOR(144,238,144));
 
-             balloon8=new Circle (480,463,r,this);//3rd Human Hostage
+             balloon8=new Circle (480,463,r,this);
              balloon8->setColor(COLOR(255,255,255));
              balloon8->setFill(COLOR(255,255,255));
 
-             line81=new Line (490,480,528,540,this);//3rd Human Hostage body
+             line81=new Line (490,480,528,540,this);
              line81->setColor(COLOR(144,238,144));
              line81->setFill(COLOR(144,238,144));
-             line82=new Line (528,540,550,538,this);//leg1
+             line82=new Line (528,540,550,538,this);
              line82->setColor(COLOR(144,238,144));
              line82->setFill(COLOR(144,238,144));
-             line83=new Line (512,520,490,549,this);//leg2
+             line83=new Line (512,520,490,549,this);
              line83->setColor(COLOR(144,238,144));
              line83->setColor(COLOR(144,238,144));
-             line84=new Line (494,490,470,509,this);//Arm 1
+             line84=new Line (494,490,470,509,this);
              line84->setColor(COLOR(144,238,144));
              line84->setColor(COLOR(144,238,144));
-             line85=new Line (470,509,460,480,this);//
+             line85=new Line (470,509,460,480,this);
              line85->setColor(COLOR(144,238,144));
              line85->setColor(COLOR(144,238,144));
-             line86=new Line (494,490,520,470,this);//Arm 2
+             line86=new Line (494,490,520,470,this);
              line86->setColor(COLOR(144,238,144));
              line86->setColor(COLOR(144,238,144));
-             line87=new Line (520,470,540,509,this);//
+             line87=new Line (520,470,540,509,this);
              line87->setColor(COLOR(144,238,144));
              line87->setColor(COLOR(144,238,144));
 
@@ -1095,42 +1113,42 @@ class Balloon:public Composite
              balloon9->setColor(COLOR(144,238,144));
              balloon9->setFill(COLOR(144,238,144));
 
-             line91=new Line (600,565,600,623,this);//6th zombie body
+             line91=new Line (600,565,600,623,this);
              line91->setColor(COLOR(144,238,144));
              line91->setFill(COLOR(144,238,144));
-             line92=new Line (600,590,580,615,this);//leg
+             line92=new Line (600,590,580,615,this);
              line92->setColor(COLOR(144,238,144));
              line92->setFill(COLOR(144,238,144));
-             line93=new Line (600,568,565,568,this);//hand
+             line93=new Line (600,568,565,568,this);
              line93->setColor(COLOR(144,238,144));
              line93->setColor(COLOR(144,238,144));
-             line94=new Line (565,568,562,570,this);//palm
+             line94=new Line (565,568,562,570,this);
              line94->setColor(COLOR(144,238,144));
              line94->setColor(COLOR(144,238,144));
 
-             balloon10=new Circle (800,223,r,this);//4th Human Hostage
+             balloon10=new Circle (800,223,r,this);
              balloon10->setColor(COLOR(255,255,255));
              balloon10->setFill(COLOR(255,255,255));
 
-             line101=new Line (810,240,848,300,this);//4th Human Hostage body
+             line101=new Line (810,240,848,300,this);
              line101->setColor(COLOR(144,238,144));
              line101->setFill(COLOR(144,238,144));
-             line102=new Line (848,300,870,298,this);//leg1
+             line102=new Line (848,300,870,298,this);
              line102->setColor(COLOR(144,238,144));
              line102->setFill(COLOR(144,238,144));
-             line103=new Line (832,280,810,309,this);//leg2
+             line103=new Line (832,280,810,309,this);
              line103->setColor(COLOR(144,238,144));
              line103->setColor(COLOR(144,238,144));
-             line104=new Line (814,250,790,269,this);//Arm 1
+             line104=new Line (814,250,790,269,this);
              line104->setColor(COLOR(144,238,144));
              line104->setColor(COLOR(144,238,144));
-             line105=new Line (790,269,780,240,this);//
+             line105=new Line (790,269,780,240,this);
              line105->setColor(COLOR(144,238,144));
              line105->setColor(COLOR(144,238,144));
-             line106=new Line (814,250,840,230,this);//Arm 2
+             line106=new Line (814,250,840,230,this);
              line106->setColor(COLOR(144,238,144));
              line106->setColor(COLOR(144,238,144));
-             line107=new Line (840,230,860,269,this);//
+             line107=new Line (840,230,860,269,this);
              line107->setColor(COLOR(144,238,144));
              line107->setColor(COLOR(144,238,144));
 
@@ -1139,7 +1157,7 @@ class Balloon:public Composite
     {
 
 
-        if(y==63)//balloon 1
+        if(y==63)
         {
             flag[0]=flag[0]+1;
             if(flag[0]==1)
@@ -1153,7 +1171,7 @@ class Balloon:public Composite
                 line14->hide();
             }
         }
-        if(y==223)//balloon 4
+        if(y==223)
         {
            flag[1]=flag[1]+1;
             if(flag[1]==1)
@@ -1170,7 +1188,7 @@ class Balloon:public Composite
                 line27->hide();
             }
         }
-        if(y==383)//balloon 6
+        if(y==383)
         {
             flag[2]=flag[2]+1;
             if(flag[2]==1)
@@ -1184,7 +1202,7 @@ class Balloon:public Composite
                 line34->hide();
             }
         }
-        if(y==543)//balloon 10
+        if(y==543)
         {
             flag[3]=flag[3]+1;
             if(flag[3]==1)
@@ -1198,7 +1216,7 @@ class Balloon:public Composite
                 line44->hide();
             }
         }
-        if(y==303)//balloon 5
+        if(y==303)
         {
             flag[4]=flag[4]+1;
             if(flag[4]==1)
@@ -1212,7 +1230,7 @@ class Balloon:public Composite
                 line54->hide();
             }
         }
-        if(y==463)//balloon 8
+        if(y==463)
         {
             flag[5]=flag[5]+1;
             if(flag[5]==1)
@@ -1229,7 +1247,7 @@ class Balloon:public Composite
                 line67->hide();
             }
         }
-        if(y==143) //balloon 2
+        if(y==143)
         {
             flag[6]=flag[6]+1;
             if(flag[6]==1)
@@ -1243,7 +1261,7 @@ class Balloon:public Composite
                 line74->hide();
             }
         }
-        if(y==423)//balloon 7
+        if(y==423)
         {
             flag[7]=flag[7]+1;
             if(flag[7]==1)
@@ -1260,7 +1278,7 @@ class Balloon:public Composite
                 line87->hide();
             }
         }
-        if(y==503)//balloon 9
+        if(y==503)
         {
             flag[8]=flag[8]+1;
             if(flag[8]==1)
@@ -1274,7 +1292,7 @@ class Balloon:public Composite
                 line94->hide();
             }
         }
-        if(y==183)//balloon 3
+        if(y==183)
         {
             flag[9]=flag[9]+1;
             if(flag[9]==1)
@@ -1303,9 +1321,9 @@ int archery()
     Body b1(58,78,COLOR(255,255,0));
     Bow b2(57,79,COLOR(255,255,0));
     score=0;
-    Arrow a1(15,103);//static arrow attached to man
-    Arrow a2(0,0);//dynamic arrow(movable arrow)
-    Text text1(a2.getX()+55,a2.getY()+78,"WELCOME");
+    Arrow a1(15,103);
+    Arrow a2(0,0);
+    Text text1(a2.getX()+55,a2.getY()+78," WELCOME ");
     wait(0.2);
     text1.hide();
     a2.hide();
@@ -1313,10 +1331,10 @@ int archery()
     Balloon ball(250,50);
     while(arrowcount<6)
     {
-        Text ending1(55,65,"Arrowcount");
-        Text ending(55,79,char(6-arrowcount));
-        Text board(120,65,"SCORE");
-        Text sc(110,79,char(score));
+        Text ending1(580,40," Arrowcount ");
+        Text ending(580,54,char(6-arrowcount));
+        Text board(650,40," SCORE ");
+        Text sc(650,54,char(score));
         ending.scale(22);
         XEvent e;
         nextEvent(e);
@@ -1329,7 +1347,7 @@ int archery()
         {
             //continue;
         }
-        switch(ev)//SWITCH CASE USED FOR THE CONTROLLED MOVEMENT OF THE MAN(UP AND DOWN) AND TO SHOOT THE ARROW
+        switch(ev)
         {
             case 'w':case 'W':
                 m.move(0,-40);
@@ -1363,7 +1381,7 @@ int archery()
     }
     return(0);
 }
-// Main Function
+
 main_program
 {
     initCanvas("Maze by CPP_Deamons",1300,900);
@@ -1372,5 +1390,4 @@ main_program
     Rt.setFill(COLOR(1,0,0));
     load1();
     start_screen();
-    maze();
 }
