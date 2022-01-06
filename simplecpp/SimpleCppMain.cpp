@@ -3,6 +3,7 @@
 #include<iostream>
 #include<Windows.h>
 #include<ctime>
+#include<graphics.h>
 void result();
 void result2();
 void result3();
@@ -23,6 +24,7 @@ static int flag[10]={0,0,0,0,0,0,0,0,0,0};
 
 void load1()
 {
+    settextstyle(3,0,1);
     const float aFx=650,aFy=450, textW= 1300,textH= 450;
     int i=1;
     Rectangle R(aFx,aFy,1300,900);
@@ -75,6 +77,7 @@ void load2()
 
 int start_screen()
 {
+
     int i=1;
     const int ax=800,ay=450;
     const float aFx=650,aFy=450, textW= 1300,textH= 900, bFx=150,bFy=400, bLx=150,bLy=500, bEx=150,bEy=600, bWidth=150,bHeight=50;
@@ -82,29 +85,41 @@ int start_screen()
     R.setColor(COLOR(0,0,60));
     R.setFill(COLOR(0,0,60));
 
-    Rectangle a(bFx,200,150,150);
-    a.setColor(COLOR(255,255,255));
-    a.setFill(COLOR(255,255,255));
-    Text v(bFx,200,"CPP Deamons");
-    Rectangle a1(bFx,200,textWidth(" CPP Deamons "),textHeight());
+    settextstyle(0,0,10);
+    setbkcolor(COLOR(0,0,60));
+    setcolor(COLOR(255,97,3));
+    outtextxy(380,320,"M.A.Z.E");
+    wait(1);
+    settextstyle(0,0,4);
+    setcolor(YELLOW);
+    outtextxy(505,400,"DEVELOPED BY CPP DAEMONS");
+    wait(1);
+    settextstyle(0,0,2);
+    setcolor(WHITE);
+    outtextxy(350,600,"PRESS SPACEBAR TO PROCEED FURTHER....");
+    getch();
+
+    settextstyle(3,0,1);
+    setbkcolor(COLOR(255,255,255));
 
     Rectangle R5(bFx,bFy,100,50);
-    R5.setColor(COLOR(255,255,255));
+    R5.setColor(COLOR(255,165,0));
     R5.setFill(COLOR(255,255,255));
     Text t1(bFx,bFy,"Start Game");
-    Rectangle R1(bFx,bFy,textWidth(" Start Game "),textHeight());
+    //Rectangle R1(bFx,bFy,textWidth(" Start Game "),textHeight());
     wait(0.5);
     Rectangle R6(bLx,bLy,100,50);
-    R6.setColor(COLOR(255,255,255));
+    R6.setColor(COLOR(255,0,0));
     R6.setFill(COLOR(255,255,255));
     Text t2(bLx,bLy,"How to Play");
-    Rectangle R2(bLx,bLy,textWidth(" How to Play "),textHeight());
+    //Rectangle R2(bLx,bLy,textWidth(" How to Play "),textHeight());
     wait(0.5);
     Rectangle R0(bEx,bEy,100,50);
     R0.setColor(COLOR(255,255,255));
     R0.setFill(COLOR(255,255,255));
     Text t3(bEx,bEy,"Exit Game");
-    Rectangle R3(bEx,bEy,textWidth(" Exit Game "),textHeight());
+    //Rectangle R3(bEx,bEy,textWidth(" Exit Game "),textHeight());
+
 
     Rectangle r(ax,ay,600,700);
     r.scale(1.25);
@@ -116,6 +131,8 @@ int start_screen()
     Text x4(ax,360,"you come across a maze with a bow and quiver of arrows at the exit");
     Text x5(ax,390,"however there's hoards of zombies at the dead ends.");
     Text x6(ax,420,"make your way through the maze in time without running into any zombies to pass thorugh!");
+    Text x7(ax,480,"Press ' V ' once at the start of the game to view Demo play.");
+
 
     while(i==1)
     {
@@ -160,7 +177,8 @@ int HTP1()
     Text t7(aFx,350,"Shoot the zombies and avoid killing the escaping humans");
     Text t8(aFx,400,"Every zombie shot dead earns you 20 points");
     Text t9(aFx,500,"Killing innocent bystanders results in decrement of 10 points");
-    Text t10(aFx,700,"Hit key p to exit midgame");
+    Text t10(aFx,600,"You have 90 seconds to kill all Zombies.");
+    Text t11(aFx,680,"Hit key p to exit midgame.");
     Text tx(bLx,bLy,"BACK");
     Rectangle b(bLx,bLy,textWidth(" BACK "),textHeight());
     while(i==1)
@@ -306,6 +324,8 @@ int menu1()
 
 void maze()
 {
+int here;
+here:
 Rectangle r110(0,0,1300,900);
 r110.setColor(COLOR(0,0,60));
 r110.setFill(COLOR(255,255,255));
@@ -407,6 +427,40 @@ cle12.setFill(GREEN);
 Circle cle(125,125,20);
 cle.setColor(YELLOW);
 cle.setFill(YELLOW);
+
+             Line *line121,*line122,*line123,*line124,*line125,*line126,*line127,*line128;
+
+             line121=new Line (0,1,1280,1);//Beginning of frame code
+             line121->setColor(COLOR(39,165,255));
+             line121->setFill(COLOR(39,165,255));
+
+             line122=new Line (0,3,1280,3);
+             line122->setColor(COLOR(39,165,255));
+             line122->setFill(COLOR(39,165,255));
+
+             line123=new Line (1276,0,1276,708);
+             line123->setColor(COLOR(39,165,255));
+             line123->setFill(COLOR(39,165,255));
+
+             line124=new Line (1274,0,1274,706);
+             line124->setColor(COLOR(39,165,255));
+             line124->setFill(COLOR(39,165,255));
+
+             line125=new Line (1274,706,0,706);
+             line125->setColor(COLOR(39,165,255));
+             line125->setFill(COLOR(39,165,255));
+
+             line126=new Line (1274,708,0,708);
+             line126->setColor(COLOR(39,165,255));
+             line126->setFill(COLOR(39,165,255));
+
+             line127=new Line (1,706,1,0);
+             line127->setColor(COLOR(39,165,255));
+             line127->setFill(COLOR(39,165,255));
+
+             line128=new Line (3,708,3,0);//End of frame code
+             line128->setColor(COLOR(39,165,255));
+             line128->setFill(COLOR(39,165,255));
 
 int time1=time(NULL)+01;
 wait(1);
@@ -735,7 +789,7 @@ repeat(3)
     wait(0.5);
     cle.move(50,0);
 }
-    result3();
+    goto here;
 }
 wait(2);
 }
@@ -940,11 +994,46 @@ class Balloon:public Composite
     Line *line11,*line12,*line13,*line14,*line21,*line22,*line23,*line24,*line25,*line26,*line27,*line31,*line32,*line33,*line34,
          *line41,*line42,*line43,*line44,*line51,*line52,*line53,*line54,*line61,*line62,*line63,*line64,*line65,*line66,*line67,
          *line71,*line72,*line73,*line74,*line81,*line82,*line83,*line84,*line85,*line86,*line87,*line91,*line92,*line93,*line94,
-         *line101,*line102,*line103,*line104,*line105,*line106,*line107;
+         *line101,*line102,*line103,*line104,*line105,*line106,*line107,
+         *line121,*line122,*line123,*line124,*line125,*line126,*line127,
+         *line128;
     int r=22,red=255,green=255,blue=255;
     public:
     Balloon(double x,double y,Composite*owner=NULL):Composite(x,y,owner)
     {
+             line121=new Line (-260,-50,1025,-50,this);//Beginning of frame code
+             line121->setColor(COLOR(39,165,255));
+             line121->setFill(COLOR(39,165,255));
+
+             line122=new Line (-260,-48,1025,-48,this);
+             line122->setColor(COLOR(39,165,255));
+             line122->setFill(COLOR(39,165,255));
+
+             line123=new Line (1025,-50,1025,643,this);
+             line123->setColor(COLOR(39,165,255));
+             line123->setFill(COLOR(39,165,255));
+
+             line124=new Line (1026,-48,1026,643,this);
+             line124->setColor(COLOR(39,165,255));
+             line124->setFill(COLOR(39,165,255));
+
+             line125=new Line (1026,643,-260,643,this);
+             line125->setColor(COLOR(39,165,255));
+             line125->setFill(COLOR(39,165,255));
+
+             line126=new Line (1026,641,-260,641,this);
+             line126->setColor(COLOR(39,165,255));
+             line126->setFill(COLOR(39,165,255));
+
+             line127=new Line (-249,643,-249,-48,this);
+             line127->setColor(COLOR(39,165,255));
+             line127->setFill(COLOR(39,165,255));
+
+             line128=new Line (-248,643,-248,-48,this);//End of frame code
+             line128->setColor(COLOR(39,165,255));
+             line128->setFill(COLOR(39,165,255));
+
+
              balloon1=new Circle (600,103,r,this);
              balloon1->setColor(COLOR(144,238,144));
              balloon1->setFill(COLOR(144,238,144));
@@ -957,10 +1046,10 @@ class Balloon:public Composite
              line12->setFill(COLOR(144,238,144));
              line13=new Line (600,128,565,128,this);
              line13->setColor(COLOR(144,238,144));
-             line13->setColor(COLOR(144,238,144));
+             line13->setFill(COLOR(144,238,144));
              line14=new Line (565,128,562,130,this);
              line14->setColor(COLOR(144,238,144));
-             line14->setColor(COLOR(144,238,144));
+             line14->setFill(COLOR(144,238,144));
 
              balloon2=new Circle (600,263,r,this);
              balloon2->setColor(COLOR(255,255,255));
@@ -974,19 +1063,19 @@ class Balloon:public Composite
              line22->setFill(COLOR(144,238,144));
              line23=new Line (632,320,610,349,this);
              line23->setColor(COLOR(144,238,144));
-             line23->setColor(COLOR(144,238,144));
+             line23->setFill(COLOR(144,238,144));
              line24=new Line (614,290,590,308,this);
              line24->setColor(COLOR(144,238,144));
-             line24->setColor(COLOR(144,238,144));
+             line24->setFill(COLOR(144,238,144));
              line25=new Line (590,308,580,280,this);
              line25->setColor(COLOR(144,238,144));
-             line25->setColor(COLOR(144,238,144));
+             line25->setFill(COLOR(144,238,144));
              line26=new Line (614,290,640,270,this);
              line26->setColor(COLOR(144,238,144));
-             line26->setColor(COLOR(144,238,144));
+             line26->setFill(COLOR(144,238,144));
              line27=new Line (640,270,660,308,this);
              line27->setColor(COLOR(144,238,144));
-             line27->setColor(COLOR(144,238,144));
+             line27->setFill(COLOR(144,238,144));
 
 
              balloon3=new Circle (250,423,r,this);
@@ -1001,10 +1090,10 @@ class Balloon:public Composite
              line32->setFill(COLOR(144,238,144));
              line33=new Line (250,448,215,448,this);
              line33->setColor(COLOR(144,238,144));
-             line33->setColor(COLOR(144,238,144));
+             line33->setFill(COLOR(144,238,144));
              line34=new Line (215,448,212,450,this);
              line34->setColor(COLOR(144,238,144));
-             line34->setColor(COLOR(144,238,144));
+             line34->setFill(COLOR(144,238,144));
 
              balloon4=new Circle (900,555,r,this);
              balloon4->setColor(COLOR(144,238,144));
@@ -1018,10 +1107,10 @@ class Balloon:public Composite
              line42->setFill(COLOR(144,238,144));
              line43=new Line (900,580,865,580,this);
              line43->setColor(COLOR(144,238,144));
-             line43->setColor(COLOR(144,238,144));
+             line43->setFill(COLOR(144,238,144));
              line44=new Line (865,580,862,582,this);
              line44->setColor(COLOR(144,238,144));
-             line44->setColor(COLOR(144,238,144));
+             line44->setFill(COLOR(144,238,144));
 
              balloon5=new Circle (340,343,r,this);
              balloon5->setColor(COLOR(144,238,144));
@@ -1035,10 +1124,10 @@ class Balloon:public Composite
              line52->setFill(COLOR(144,238,144));
              line53=new Line (340,368,305,368,this);
              line53->setColor(COLOR(144,238,144));
-             line53->setColor(COLOR(144,238,144));
+             line53->setFill(COLOR(144,238,144));
              line54=new Line (305,368,302,370,this);
              line54->setColor(COLOR(144,238,144));
-             line54->setColor(COLOR(144,238,144));
+             line54->setFill(COLOR(144,238,144));
 
              balloon6=new Circle (720,503,r,this);
              balloon6->setColor(COLOR(255,255,255));
@@ -1052,19 +1141,19 @@ class Balloon:public Composite
              line62->setFill(COLOR(144,238,144));
              line63=new Line (752,560,730,589,this);
              line63->setColor(COLOR(144,238,144));
-             line63->setColor(COLOR(144,238,144));
+             line63->setFill(COLOR(144,238,144));
              line64=new Line (734,530,710,549,this);
              line64->setColor(COLOR(144,238,144));
-             line64->setColor(COLOR(144,238,144));
+             line64->setFill(COLOR(144,238,144));
              line65=new Line (710,548,700,520,this);
              line65->setColor(COLOR(144,238,144));
-             line65->setColor(COLOR(144,238,144));
+             line65->setFill(COLOR(144,238,144));
              line66=new Line (734,530,760,510,this);
              line66->setColor(COLOR(144,238,144));
-             line66->setColor(COLOR(144,238,144));
+             line66->setFill(COLOR(144,238,144));
              line67=new Line (760,510,780,549,this);
              line67->setColor(COLOR(144,238,144));
-             line67->setColor(COLOR(144,238,144));
+             line67->setFill(COLOR(144,238,144));
 
              balloon7=new Circle (400,183,r,this);
              balloon7->setColor(COLOR(144,238,144));
@@ -1078,10 +1167,10 @@ class Balloon:public Composite
              line72->setFill(COLOR(144,238,144));
              line73=new Line (400,208,365,208,this);
              line73->setColor(COLOR(144,238,144));
-             line73->setColor(COLOR(144,238,144));
+             line73->setFill(COLOR(144,238,144));
              line74=new Line (365,208,362,210,this);
              line74->setColor(COLOR(144,238,144));
-             line74->setColor(COLOR(144,238,144));
+             line74->setFill(COLOR(144,238,144));
 
              balloon8=new Circle (480,463,r,this);
              balloon8->setColor(COLOR(255,255,255));
@@ -1095,19 +1184,19 @@ class Balloon:public Composite
              line82->setFill(COLOR(144,238,144));
              line83=new Line (512,520,490,549,this);
              line83->setColor(COLOR(144,238,144));
-             line83->setColor(COLOR(144,238,144));
+             line83->setFill(COLOR(144,238,144));
              line84=new Line (494,490,470,509,this);
              line84->setColor(COLOR(144,238,144));
-             line84->setColor(COLOR(144,238,144));
+             line84->setFill(COLOR(144,238,144));
              line85=new Line (470,509,460,480,this);
              line85->setColor(COLOR(144,238,144));
-             line85->setColor(COLOR(144,238,144));
+             line85->setFill(COLOR(144,238,144));
              line86=new Line (494,490,520,470,this);
              line86->setColor(COLOR(144,238,144));
-             line86->setColor(COLOR(144,238,144));
+             line86->setFill(COLOR(144,238,144));
              line87=new Line (520,470,540,509,this);
              line87->setColor(COLOR(144,238,144));
-             line87->setColor(COLOR(144,238,144));
+             line87->setFill(COLOR(144,238,144));
 
              balloon9=new Circle (600,543,r,this);
              balloon9->setColor(COLOR(144,238,144));
@@ -1121,10 +1210,10 @@ class Balloon:public Composite
              line92->setFill(COLOR(144,238,144));
              line93=new Line (600,568,565,568,this);
              line93->setColor(COLOR(144,238,144));
-             line93->setColor(COLOR(144,238,144));
+             line93->setFill(COLOR(144,238,144));
              line94=new Line (565,568,562,570,this);
              line94->setColor(COLOR(144,238,144));
-             line94->setColor(COLOR(144,238,144));
+             line94->setFill(COLOR(144,238,144));
 
              balloon10=new Circle (800,223,r,this);
              balloon10->setColor(COLOR(255,255,255));
@@ -1138,19 +1227,22 @@ class Balloon:public Composite
              line102->setFill(COLOR(144,238,144));
              line103=new Line (832,280,810,309,this);
              line103->setColor(COLOR(144,238,144));
-             line103->setColor(COLOR(144,238,144));
+             line103->setFill(COLOR(144,238,144));
              line104=new Line (814,250,790,269,this);
              line104->setColor(COLOR(144,238,144));
-             line104->setColor(COLOR(144,238,144));
+             line104->setFill(COLOR(144,238,144));
              line105=new Line (790,269,780,240,this);
              line105->setColor(COLOR(144,238,144));
-             line105->setColor(COLOR(144,238,144));
+             line105->setFill(COLOR(144,238,144));
              line106=new Line (814,250,840,230,this);
              line106->setColor(COLOR(144,238,144));
-             line106->setColor(COLOR(144,238,144));
+             line106->setFill(COLOR(144,238,144));
              line107=new Line (840,230,860,269,this);
              line107->setColor(COLOR(144,238,144));
-             line107->setColor(COLOR(144,238,144));
+             line107->setFill(COLOR(144,238,144));
+
+
+
 
     }
     void score_delete(int y)
@@ -1329,12 +1421,14 @@ int archery()
     a2.hide();
     double x=a1.getX(),y=a1.getY(),arrowcount=0;
     Balloon ball(250,50);
-    while(arrowcount<6)
+    int t1=time(NULL);
+    int t2;
+    while(arrowcount<6&&t2-t1<=90)
     {
-        Text ending1(580,40," Arrowcount ");
-        Text ending(580,54,char(6-arrowcount));
-        Text board(650,40," SCORE ");
-        Text sc(650,54,char(score));
+        Text ending1(580,40," ARROWCOUNT  ");
+        Text ending(580,56,char(6-arrowcount));
+        Text board(690,40," SCORE ");
+        Text sc(690,56,char(score));
         ending.scale(22);
         XEvent e;
         nextEvent(e);
@@ -1345,7 +1439,7 @@ int archery()
         }
         else if (mouseButtonPressEvent)
         {
-            //continue;
+            continue;
         }
         switch(ev)
         {
@@ -1356,6 +1450,7 @@ int archery()
                 a1.move(0,-40);
                 x=a1.getX();
                 y=a1.getY();
+                t2=time(NULL);
                 break;
             case 's':case'S':
                 m.move(0,40);
@@ -1364,11 +1459,13 @@ int archery()
                 a1.move(0,40);
                 x=a1.getX();
                 y=a1.getY();
+                t2=time(NULL);
                 break;
             case 'd':case 'D':
                 a2.movement(x,y);
                 arrowcount++;
                 ball.score_delete(y);
+                t2=time(NULL);
                 break;
             case 'p':case 'P':
                 menu2();
@@ -1384,7 +1481,7 @@ int archery()
 
 main_program
 {
-    initCanvas("Maze by CPP_Deamons",1300,900);
+    initCanvas("Maze by CPP_Deamons",1280,720);
     Rectangle Rt(650,450,1300,900);
     Rt.setColor(COLOR(1,0,0));
     Rt.setFill(COLOR(1,0,0));
