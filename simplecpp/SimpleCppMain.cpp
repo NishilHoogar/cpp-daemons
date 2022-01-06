@@ -991,6 +991,7 @@ class Man:public Composite
 class Balloon:public Composite
 {
     Circle *balloon1,*balloon2,*balloon3,*balloon4,*balloon5,*balloon6,*balloon7,*balloon8,*balloon9,*balloon10;
+    
     Line *line11,*line12,*line13,*line14,*line21,*line22,*line23,*line24,*line25,*line26,*line27,*line31,*line32,*line33,*line34,
          *line41,*line42,*line43,*line44,*line51,*line52,*line53,*line54,*line61,*line62,*line63,*line64,*line65,*line66,*line67,
          *line71,*line72,*line73,*line74,*line81,*line82,*line83,*line84,*line85,*line86,*line87,*line91,*line92,*line93,*line94,
