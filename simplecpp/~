@@ -1,9 +1,0 @@
-#include<iostream>
-#include<string>
-#include<conio.h>
-#include<stdlib.h>
-
-int main()
-{
-	cout<<"hello World!\n";
-}
