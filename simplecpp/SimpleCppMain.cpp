@@ -106,19 +106,19 @@ int start_screen()
     R5.setColor(COLOR(255,165,0));
     R5.setFill(COLOR(255,255,255));
     Text t1(bFx,bFy,"Start Game");
-    //Rectangle R1(bFx,bFy,textWidth(" Start Game "),textHeight());
+    //Start Game option 
     wait(0.5);
     Rectangle R6(bLx,bLy,100,50);
     R6.setColor(COLOR(255,0,0));
     R6.setFill(COLOR(255,255,255));
     Text t2(bLx,bLy,"How to Play");
-    //Rectangle R2(bLx,bLy,textWidth(" How to Play "),textHeight());
+    //How to play option
     wait(0.5);
     Rectangle R0(bEx,bEy,100,50);
     R0.setColor(COLOR(255,255,255));
     R0.setFill(COLOR(255,255,255));
     Text t3(bEx,bEy,"Exit Game");
-    //Rectangle R3(bEx,bEy,textWidth(" Exit Game "),textHeight());
+    //Exit Game
 
 
     Rectangle r(ax,ay,600,700);
